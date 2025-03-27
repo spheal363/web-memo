@@ -34,6 +34,14 @@ function Memo({
   function handleDelete(index: number) {
     setMemos((prevMemos) => prevMemos.filter((_, i) => i !== index));
   }
+  function copyTextToClipboard(text: string) {
+    navigator.clipboard.writeText(text)
+      .then(function () {
+        console.log('Async: Copying to clipboard was successful!');
+      }, function (err) {
+        console.error('Async: Could not copy text: ', err);
+      });
+  }
 
   return (
     <div>
@@ -41,6 +49,9 @@ function Memo({
         {memos.map((memo, index) => (
           <li key={index}>
             {memo}
+            <button onClick={() => copyTextToClipboard(memo)}>
+              Copy!
+            </button>
             <button onClick={() => handleDelete(index)}>
               <FaTrash />
             </button>
