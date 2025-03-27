@@ -1,4 +1,14 @@
 {
+  "homepage": "https://spheal363.github.io/web-memo",
+  "scripts": {
+    "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -r git@github.com:spheal363/web-memo.git",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
     "@testing-library/jest-dom": "^6.6.3",
@@ -15,12 +25,10 @@
     "@types/react-dom": "^19.0.4",
     "@types/testing-library__jest-dom": "^5.14.9",
     "autoprefixer": "^10.4.21",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^4.9.5"
-  },
-  "scripts": {
-    "start": "react-scripts start"
   },
   "browserslist": {
     "production": [
