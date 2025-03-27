@@ -1,26 +1,64 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
 import './App.css';
 
-function App() {
+function InputField({ setMemos }: { setMemos: React.Dispatch<React.SetStateAction<string[]>> }) {
+  const [memo, setMemo] = useState<string>('');
+  function handleClick() {
+    if (memo.trim() !== '') {
+      setMemos((prevMemos) => [...prevMemos, memo]);
+      setMemo('');
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        type="text"
+        value={memo}
+        onChange={(e) => setMemo(e.target.value)}
+      />
+      <button onClick={handleClick}>追加</button>
     </div>
   );
 }
 
-export default App;
+function Memo({
+  memos,
+  setMemos,
+}: {
+  memos: string[];
+  setMemos: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
+  function handleDelete(index: number) {
+    setMemos((prevMemos) => prevMemos.filter((_, i) => i !== index));
+  }
+
+  return (
+    <div>
+      <ul>
+        {memos.map((memo, index) => (
+          <li key={index}>
+            {memo}
+            <button onClick={() => handleDelete(index)}>
+              <FaTrash />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default function App() {
+  const [memos, setMemos] = useState<string[]>([]);
+
+  return (
+    <div>
+      <h1>WEBメモ帳</h1>
+      <InputField setMemos={setMemos} />
+      <Memo memos={memos} setMemos={setMemos} />
+    </div>
+  );
+}
