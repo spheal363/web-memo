@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/web-memo/static/css/main.3b4e30de.css",
+    "main.js": "/web-memo/static/js/main.659bee58.js",
+    "index.html": "/web-memo/index.html",
+    "main.3b4e30de.css.map": "/web-memo/static/css/main.3b4e30de.css.map",
+    "main.659bee58.js.map": "/web-memo/static/js/main.659bee58.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b4e30de.css",
+    "static/js/main.659bee58.js"
+  ]
+}
