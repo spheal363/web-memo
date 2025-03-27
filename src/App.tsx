@@ -184,7 +184,28 @@ function Memo({
 }
 
 export default function App() {
-  const [memos, setMemos] = useState<string[]>([]);
+  const [memos, setMemos] = useState<string[]>(() => {
+    const stored = localStorage.getItem('memos');
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    const storedMemos = localStorage.getItem('memos');
+    if (storedMemos) {
+      setMemos(JSON.parse(storedMemos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('memos', JSON.stringify(memos));
+  }, [memos]);
 
   return (
     <div>
